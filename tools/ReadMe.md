@@ -24,3 +24,9 @@ pydensecrf를 설치합니다.
     pip install opencv-python
 
 imread를 위해 cv2를 설치합니다.
+- - -
+# 사용법
+3번 째 셀의 csv 경로를 수정합니다.
+    
+    df = pd.read_csv('yourpath.csv')
+
