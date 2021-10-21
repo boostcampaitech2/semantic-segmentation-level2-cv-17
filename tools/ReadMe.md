@@ -1,5 +1,5 @@
+이 파일은 [캐글 링크](https://www.kaggle.com/meaninglesslives/apply-crf)를 참고하여 우리 csv 유형에 맞게 수정했습니다.
 # 가상환경 만들기
-
 
     conda create -n crf python=3.6.9    
     conda activate crf
