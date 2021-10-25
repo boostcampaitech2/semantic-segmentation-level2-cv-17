@@ -69,7 +69,7 @@ class CustomDataLoader(Dataset):
         sorted_df = pd.DataFrame(["Backgroud"], columns = ["Categories"])
         sorted_df = sorted_df.append(sorted_temp_df, ignore_index=True)
 
-        category_names = list(sorted_df.Categories)
+        self.category_names = list(sorted_df.Categories)
 
         
     def __getitem__(self, index: int):
