@@ -12,3 +12,7 @@ Latest version from source:
 ``` python3 smp_train.py```
 ### inference
 ```python3 smp_inference.py```
+
+## 추가할 사항
++ wandb 연동
++ torchvision train & inference file
