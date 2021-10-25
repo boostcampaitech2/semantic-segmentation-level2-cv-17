@@ -227,7 +227,7 @@ if __name__ == '__main__':
     # 모델 저장 함수 정의
     val_every = 1
 
-    model_dir = increment_path(saved_dir + "Unet_" + encoder_name)
+    model_dir = increment_path(saved_dir + "Unet_efficientnet-b0")
     createFolder(model_dir)
 
     # Loss function 정의
