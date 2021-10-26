@@ -148,11 +148,14 @@ if __name__ == '__main__':
     train_path = dataset_path + '/train.json'
     val_path = dataset_path + '/val.json'
     test_path = dataset_path + '/test.json'
+    saved_dir = '/opt/ml/segmentation/baseline/saved/'
 
-    # Model
+    # Model (밑에서 설정)
     ## model = Unet 
     ## optimizer = Adam
     ## loss = CE
+
+    model_dir = increment_path(saved_dir + "Unet_efficientnet-b0")
 
 ##-----------------------------------------------------------------------##
 
@@ -160,8 +163,8 @@ if __name__ == '__main__':
     # seed 고정
     seed_everything(random_seed)
 
-    saved_dir = '/opt/ml/segmentation/baseline/saved/'
     createFolder(saved_dir)
+    createFolder(model_dir)
 
     print('pytorch version: {}'.format(torch.__version__))
     print('GPU 사용 가능 여부: {}'.format(torch.cuda.is_available()))
@@ -270,9 +273,6 @@ if __name__ == '__main__':
 
     # 모델 저장 함수 정의
     val_every = 1
-
-    model_dir = increment_path(saved_dir + "Unet_efficientnet-b0")
-    createFolder(model_dir)
 
     # Loss function 정의
     criterion = nn.CrossEntropyLoss()
