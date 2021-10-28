@@ -1,4 +1,4 @@
-
+import argparse
 import os
 import random
 import json
@@ -137,18 +137,28 @@ if __name__ == '__main__':
 ##-----------------------------SETTING---------------------------------##
 
     # Parameters
-    batch_size = 8   # Mini-batch size
-    num_epochs = 2
-    learning_rate = 0.0001
-    random_seed=21
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--seed', type=int, default=21, help='random seed (default: 21)')
+    parser.add_argument('--epochs', type=int, default=20, help='number of epochs to train (default: 20)')
+    parser.add_argument('--batch_size', type=int, default=8, help='input batch size for validing (default: 8)')
+    parser.add_argument('--model', type=str, default='Unet', help='model type (default: Unet)')
+    parser.add_argument('--encoder_name', type=str, default='tu-hrnet_w48', help='encoder type (default: tu-hrnet_w48)')
+    parser.add_argument('--optimizer', type=str, default='Adam', help='optimizer type (default: Adam)')
+    parser.add_argument('--lr', type=float, default=1e-4, help='learning rate (default: 1e-4)')
+    
+    parser.add_argument('--name', default='Unet_hrnet_w48', help='model save at {SM_MODEL_DIR}/{name}')
+    parser.add_argument('--data_dir', type=str, default=os.environ.get('SM_CHANNEL_TRAIN', '/opt/ml/segmentation/input/data_old'))
+    parser.add_argument('--saved_dir', type=str, default=os.environ.get('SM_MODEL_DIR', '/opt/ml/segmentation/baseline/saved/'))
+
+    args = parser.parse_args()
 
     # Directory
-    dataset_path  = '/opt/ml/segmentation/input/data_old'
+    dataset_path  = args.data_dir
     anns_file_path = dataset_path + '/' + 'train_all.json'
     train_path = dataset_path + '/train.json'
     val_path = dataset_path + '/val.json'
     test_path = dataset_path + '/test.json'
-    saved_dir = '/opt/ml/segmentation/baseline/saved/'
+    saved_dir = args.saved_dir
 
     # Model (밑에서 설정)
     ## model = Unet 
@@ -161,7 +171,7 @@ if __name__ == '__main__':
 
 # SETTINGS
     # seed 고정
-    seed_everything(random_seed)
+    seed_everything(args.seed)
 
     createFolder(saved_dir)
     createFolder(model_dir)
@@ -246,26 +256,26 @@ if __name__ == '__main__':
 
     # DataLoader
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset, 
-                                            batch_size=batch_size,
+                                            batch_size=args.batch_size,
                                             shuffle=True,
                                             num_workers=4,
                                             collate_fn=collate_fn)
 
     val_loader = torch.utils.data.DataLoader(dataset=val_dataset, 
-                                            batch_size=batch_size,
+                                            batch_size=args.batch_size,
                                             shuffle=False,
                                             num_workers=4,
                                             collate_fn=collate_fn)
 
     test_loader = torch.utils.data.DataLoader(dataset=test_dataset,
-                                            batch_size=batch_size,
+                                            batch_size=args.batch_size,
                                             num_workers=4,
                                             collate_fn=collate_fn)
 
 # MODEL
     # 출력 label 수 정의 (classes=11)
     model = smp.Unet(
-        encoder_name="efficientnet-b0", # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
+        encoder_name=args.encoder_name, # choose encoder, e.g. mobilenet_v2 or efficientnet-b7
         encoder_weights="imagenet",     # use `imagenet` pre-trained weights for encoder initialization
         in_channels=3,                  # model input channels (1 for gray-scale images, 3 for RGB, etc.)
         classes=11,                     # model output channels (number of classes in your dataset)
@@ -278,8 +288,8 @@ if __name__ == '__main__':
     criterion = nn.CrossEntropyLoss()
 
     # Optimizer 정의
-    optimizer = torch.optim.Adam(params = model.parameters(), lr = learning_rate, weight_decay=1e-6)
+    optimizer = torch.optim.Adam(params = model.parameters(), lr = args.lr, weight_decay=1e-6)
 
 # TRAIN
-    train(num_epochs, model, train_loader, val_loader, criterion, optimizer, model_dir, val_every, device)
+    train(args.epochs, model, train_loader, val_loader, criterion, optimizer, model_dir, val_every, device)
 
