@@ -11,9 +11,39 @@
 
 여러분에 의해 만들어진 우수한 성능의 모델은 쓰레기장에 설치되어 정확한 분리수거를 돕거나, 어린아이들의 분리수거 교육 등에 사용될 수 있을 것입니다. 부디 지구를 위기로부터 구해주세요! 🌎
 
-+ Input : 쓰레기 객체가 담긴 이미지가 모델의 인풋으로 사용됩니다. segmentation annotation은 COCO format으로 제공됩니다.
+## Installation
 
-+ Output : 모델은 pixel 좌표에 따라 카테고리 값을 리턴합니다. 이를 submission 양식에 맞게 csv 파일을 만들어 제출합니다.
+a. Create Environment
+
+```
+apt-get update
+conda create --name {input_name} --file spec-file.txt
+```
+
+b. Install Requirements
+```
+pip install -r requirements.txt
+```
+
+c. Install Pytorch & MMSegmentation
+- pytorch : 1.7.1 | torchvision : 0.8.2 | torchaudio : 0.7.2 | cudatoolkit : 11.0
+```
+conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
+mim install mmsegmentation
+pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7.0/index.html
+```
+
+## Train
+
+```
+python train.py --config_train ./configs/train.yaml
+```
+
+## Inference
+
+```
+python train.py --config_train ./configs/inference.yaml
+```
 
 ## Members
 

@@ -167,3 +167,9 @@ mmseg/.mim
 
 # Pytorch
 *.pth
+
+# csv file
+*.csv
+
+# empty
+.empty/
