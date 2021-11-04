@@ -1,0 +1,25 @@
+# -- config path
+config_dir : 'swin'
+config_file : 'upernet_swin_large_patch4_window12_512x512_80k_coco_pretrain_384x384_22K'
+
+## -- wandb
+wandb : False
+wandb_proj : 'Segmentation'
+wandb_name : 'Swin-L'
+log_interval : 50
+
+# -- hyperparameter
+seed : 1995
+batch_size : 8
+lr : 0.00006
+
+# -- validation
+validate : True
+eval_interval : 2000
+
+# -- checkpoint
+use_ckpt : False
+ckpt_name : 'latest'
+
+## -- save best model
+save_best_model : True
