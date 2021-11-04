@@ -1,0 +1,34 @@
+{
+    "os": "Linux-4.4.0-59-generic-x86_64-with-debian-buster-sid",
+    "python": "3.7.11",
+    "heartbeatAt": "2021-11-02T10:11:01.090247",
+    "startedAt": "2021-11-02T10:10:59.689735",
+    "docker": null,
+    "gpu": "Tesla V100-PCIE-32GB",
+    "gpu_count": 1,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "--ip=127.0.0.1",
+        "--stdin=9003",
+        "--control=9001",
+        "--hb=9000",
+        "--Session.signature_scheme=\"hmac-sha256\"",
+        "--Session.key=b\"862d9665-4c09-460a-8aaa-ee8d425f3434\"",
+        "--shell=9002",
+        "--transport=\"tcp\"",
+        "--iopub=9004",
+        "--f=/tmp/tmp-28595fXpQl8a1dGt.json"
+    ],
+    "state": "running",
+    "program": "<python with no main file>",
+    "git": {
+        "remote": "https://github.com/boostcampaitech2/semantic-segmentation-level2-cv-17.git",
+        "commit": "815c71181ab9b9f7dd9eca12dbe23c82b692a76f"
+    },
+    "email": "bsw0111@naver.com",
+    "root": "/opt/ml/segmentation/semantic-segmentation-level2-cv-17",
+    "host": "9760b71bd07f",
+    "username": "root",
+    "executable": "/opt/conda/envs/segmentation/bin/python"
+}

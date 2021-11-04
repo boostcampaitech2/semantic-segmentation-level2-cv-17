@@ -8,7 +8,6 @@ input/
 work_dirs/
 
 # config folders
-_base_/
 danet/
 emanet/
 hrnet/

@@ -1,0 +1,26 @@
+{
+    "os": "Linux-4.4.0-59-generic-x86_64-with-debian-buster-sid",
+    "python": "3.7.11",
+    "heartbeatAt": "2021-11-02T03:02:08.815195",
+    "startedAt": "2021-11-02T03:02:07.711046",
+    "docker": null,
+    "gpu": "Tesla V100-PCIE-32GB",
+    "gpu_count": 1,
+    "cpu_count": 8,
+    "cuda": null,
+    "args": [
+        "-f",
+        "/opt/ml/.local/share/jupyter/runtime/kernel-4ec6704d-284b-4d78-ab33-07f9c2c2021b.json"
+    ],
+    "state": "running",
+    "program": "segmentation/semantic-segmentation-level2-cv-17/mmsegmentation/seg_train.ipynb",
+    "root": "/opt/ml/segmentation/semantic-segmentation-level2-cv-17",
+    "git": {
+        "remote": "https://github.com/boostcampaitech2/semantic-segmentation-level2-cv-17.git",
+        "commit": "815c71181ab9b9f7dd9eca12dbe23c82b692a76f"
+    },
+    "email": "bsw0111@naver.com",
+    "host": "9760b71bd07f",
+    "username": "root",
+    "executable": "/opt/conda/envs/segmentation/bin/python"
+}

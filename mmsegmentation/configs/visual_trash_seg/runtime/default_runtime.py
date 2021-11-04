@@ -1,9 +1,14 @@
 # yapf:disable
+# wandb 추가
 log_config = dict(
     interval=50,
     hooks=[
-        dict(type='TextLoggerHook', by_epoch=False),
-        # dict(type='TensorboardLoggerHook')
+        dict(type='TextLoggerHook'),
+        dict(
+            type='WandbLoggerHook',
+            init_kwargs=dict(
+                project='Segmentation',
+                name='wsangbae'))
     ])
 # yapf:enable
 dist_params = dict(backend='nccl')
@@ -12,3 +17,4 @@ load_from = None
 resume_from = None
 workflow = [('train', 1)]
 cudnn_benchmark = True
+

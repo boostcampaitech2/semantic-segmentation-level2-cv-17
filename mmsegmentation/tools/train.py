@@ -6,6 +6,9 @@ import os.path as osp
 import time
 import warnings
 
+import sys
+sys.path.append('..')
+
 import mmcv
 import torch
 from mmcv.cnn.utils import revert_sync_batchnorm

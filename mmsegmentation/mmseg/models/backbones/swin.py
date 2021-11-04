@@ -15,7 +15,7 @@ from mmcv.utils import to_2tuple
 from ...utils import get_root_logger
 from ..builder import BACKBONES
 from ..utils.embed import PatchEmbed, PatchMerging
-
+from ..utils.ckpt_convert import swin_converter
 
 class WindowMSA(BaseModule):
     """Window based multi-head self-attention (W-MSA) module with relative
@@ -535,8 +535,10 @@ class SwinTransformer(BaseModule):
                  with_cp=False,
                  pretrained=None,
                  frozen_stages=-1,
-                 init_cfg=None):
+                 init_cfg=None,
+                 convert_weights=False):
         self.frozen_stages = frozen_stages
+        self.convert_weights = convert_weights
 
         if isinstance(pretrain_img_size, int):
             pretrain_img_size = to_2tuple(pretrain_img_size)
@@ -659,6 +661,7 @@ class SwinTransformer(BaseModule):
                 param.requires_grad = False
 
     def init_weights(self):
+        
         logger = get_root_logger()
         if self.init_cfg is None:
             logger.warn(f'No pre-trained weights for '
@@ -674,6 +677,7 @@ class SwinTransformer(BaseModule):
                 elif isinstance(m, nn.LayerNorm):
                     constant_init(m.bias, 0)
                     constant_init(m.weight, 1.0)
+                    
         else:
             assert 'checkpoint' in self.init_cfg, f'Only support ' \
                                                   f'specify `Pretrained` in ' \
@@ -681,12 +685,17 @@ class SwinTransformer(BaseModule):
                                                   f'{self.__class__.__name__} '
             ckpt = _load_checkpoint(
                 self.init_cfg['checkpoint'], logger=logger, map_location='cpu')
+                
             if 'state_dict' in ckpt:
                 _state_dict = ckpt['state_dict']
             elif 'model' in ckpt:
                 _state_dict = ckpt['model']
             else:
                 _state_dict = ckpt
+                
+            if self.convert_weights:
+                # supported loading weight from original repo,
+                _state_dict = swin_converter(_state_dict)
 
             state_dict = OrderedDict()
             for k, v in _state_dict.items():
