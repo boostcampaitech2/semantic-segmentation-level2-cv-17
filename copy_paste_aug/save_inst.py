@@ -40,7 +40,7 @@ def apply_mask(image, mask, color, alpha=0.5):
     return image
 
 
-def display_instances(image, boxes, masks, class_ids, class_names,
+def save_instances(image, boxes, masks, class_ids, class_names,
                       scores=None, title="",
                       figsize=(16, 16), ax=None,
                       show_mask=True, show_bbox=True,
@@ -61,24 +61,20 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     N = boxes.shape[0]
     assert boxes.shape[0] == masks.shape[-1] == class_ids.shape[0]
 
-    # If no axis is passed, create one and automatically call show()
-    auto_show = False
-    # if not ax:
-    #     _, ax = plt.subplots(1, figsize=figsize)
-    #     auto_show = True
+    # make directory
+    if not os.path.exists('cp_data/img'):
+        os.makedirs('cp_data/img')
+    if not os.path.exists('cp_data/ann'):
+        os.makedirs('cp_data/ann')
 
     # Generate random colors
     colors = colors or random_colors(N)
 
     # Show area outside image boundaries.
     height, width = image.shape[:2]
-    # ax.set_ylim(height + 10, -10)
-    # ax.set_xlim(-10, width + 10)
-    # ax.axis('off')
-    # ax.set_title(title)
 
     masked_image = image.astype(np.uint32).copy()
-    cv2.imwrite(f'cp_data/img/{file_name + 4038}.jpg', masked_image.astype(np.uint8))
+    cv2.imwrite(f'cp_data/img/{file_name}.jpg', masked_image.astype(np.uint8))
 
     seg_mask = np.zeros((512, 512))
     for i in range(N):
@@ -89,11 +85,6 @@ def display_instances(image, boxes, masks, class_ids, class_names,
             # Skip this instance. Has no bbox. Likely lost in image cropping.
             continue
         x1, y1, width, height = boxes[i]
-        # if show_bbox:
-        #     p = patches.Rectangle((x1, y1), width, height, linewidth=2,
-        #                         alpha=0.7, linestyle="dashed",
-        #                         edgecolor=color, facecolor='none')
-        #     ax.add_patch(p)
 
         # Label
         if not captions:
@@ -103,8 +94,6 @@ def display_instances(image, boxes, masks, class_ids, class_names,
             caption = "{} {:.3f}".format(label, score) if score else label
         else:
             caption = captions[i]
-        # ax.text(x1, y1 + 8, caption,
-        #         color='w', size=11, backgroundcolor="none")
 
         # Mask
         mask = masks[:, :, i]
@@ -124,8 +113,4 @@ def display_instances(image, boxes, masks, class_ids, class_names,
             # ax.add_patch(p)
 
         seg_mask[mask == 1] = class_id
-    cv2.imwrite(f'cp_data/ann/{file_name + 4038}.png', seg_mask.astype(np.uint8))
-
-    # ax.imshow(masked_image.astype(np.uint8))
-    if auto_show:
-        plt.show()
+    cv2.imwrite(f'cp_data/ann/{file_name}.png', seg_mask.astype(np.uint8))

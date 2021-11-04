@@ -1,0 +1,16 @@
+img_size : 512
+data_root : './input/data/'
+ann_file : './input/data/val.json'
+
+# -- RandomScale
+limit_min : 0.5
+limit_max : 1.
+rs_p : 1.
+
+# -- CopyPaste
+sigma : 1
+pct_objects_paste : 0.9
+cp_p : 1.
+
+# -- save file name
+start_num : 0
