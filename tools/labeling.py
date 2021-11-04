@@ -40,7 +40,7 @@ end_idx = 4090
 
 # 필요에 따른 수정 부분
 current_idx = 3272 # 시작 인덱스
-img_size = (512, 512) # 편의에 맞게 이미지 크기 조절
+img_size = (384, 384) # 편의에 맞게 이미지 크기 조절
 img_save = True # 이미지 저장 여부
 
 if img_save:
@@ -70,22 +70,29 @@ while True:
     # select_data = data.iloc[mask[current_idx]]
     img = cv2.imread(f'img/{current_idx}.jpg')
     ann = cv2.imread(f'ann/{current_idx}.png')    
+    ann2 = cv2.imread(f'ann2/{current_idx}.png')
 
-    # img_r = cv2.resize(img, img_size, interpolation = cv2.INTER_AREA)
-    # ann_r = cv2.resize(ann, img_size, interpolation = cv2.INTER_AREA)
+    img = cv2.resize(img, img_size, interpolation = cv2.INTER_NEAREST)
+    ann = cv2.resize(ann, img_size, interpolation = cv2.INTER_NEAREST)
+    ann2 = cv2.resize(ann2, img_size, interpolation = cv2.INTER_NEAREST)
     
     ann_c = label_to_color_image(ann[:,:,0])
+    ann2_c = label_to_color_image(ann2[:,:,0])
     mix = cv2.addWeighted(img, 0.4, ann_c, 0.6, 0)
+    mix2 = cv2.addWeighted(img, 0.4, ann2_c, 0.6, 0)
+
     win = cv2.hconcat([ann_c, mix, img])
+    win2 = cv2.hconcat([ann2_c, mix2, img])
+    win3 = cv2.vconcat([win, win2])
     
     class_dict = {0: 'General trash', 1: 'Paper', 2: 'Paper pack', 3: 'Metal', 4: 'Glass', 5: 'Plastic', 6: 'Styrofoam', 7: 'Plastic bag', 8: 'Battery', 9: 'Clothing'}
     
     for idx, (c, r, g, b) in enumerate(class_colormap.values):
         if idx==0:
             continue
-        win = cv2.putText(win, c, (0,30*idx), 0, 0.8, (r,g,b),2)
+        win3 = cv2.putText(win3, c, (0,30*idx), 0, 0.8, (r,g,b),2)
 
-    cv2.imshow("win", win)
+    cv2.imshow("win", win3)
 
 
     ret = cv2.waitKey(0)
