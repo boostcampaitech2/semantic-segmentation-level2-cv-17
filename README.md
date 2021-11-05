@@ -115,6 +115,60 @@ cp_p : 적용 비율(float)
 # -- save file name
 start_num : 저장되는 image file의 몇 번부터 시작할 것인가(int)
 ```
+## CRF
+
+### Installation
+a. Create New Environment
+```
+conda create -n crf python=3.6.9    
+conda activate crf
+```
+you must install python 3.6 or lower
+
+b. Install Requirements
+```
+pip install -r requirements.txt
+```
+c. Install pydensecrf
+```
+pip install cython
+conda install -c conda-forge pydensecrf
+```
+d. Install cv2
+```
+pip install opencv-python
+```
+### Running
+Correct the 3rd line and RUN **utils/apply-crf.ipynb**
+```
+df = pd.read_csv('yourpath.csv')
+```
+## Pseudo-labeling
+### Make Img and Ann file
+```
+# In 3th cell at utils/Pseudo-labeling.ipynb
+df = pd.read_csv('output.csv')
+-> path of output csv file you want to pseudo-labeling
+test_path = '/opt/ml/segmentation/input/data/test/img/'
+-> path of test dataset
+img_path = '/opt/ml/segmentation/input/data/pseudo/img/'
+-> path of new image file to save
+ann_path = "/opt/ml/segmentation/input/data/pseudo/ann/"
+-> path of new ann file to save
+```
+### Running
+```
+python ./utils/labeling.py
+```
+```
+# In utils/labeling.py
+img = cv2.imread(f'img/{current_idx}.jpg')
+-> img = path of test dataset
+ann = cv2.imread(f'ann/{current_idx}.png')    
+-> ann = path of newly created ann file
+ann2 = cv2.imread(f'ann2/{current_idx}.png')
+-> ann2 = path of another ann file for comparison
+```
 
 ## Members
 
