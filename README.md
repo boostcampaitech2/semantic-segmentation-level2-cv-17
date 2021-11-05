@@ -11,6 +11,54 @@
 
 여러분에 의해 만들어진 우수한 성능의 모델은 쓰레기장에 설치되어 정확한 분리수거를 돕거나, 어린아이들의 분리수거 교육 등에 사용될 수 있을 것입니다. 부디 지구를 위기로부터 구해주세요! 🌎
 
+## Project Structure
+```
+├─input 
+├─configs                                 
+│  ├─swin                                 
+│  └─_base_                               
+│      ├─datasets                         
+│      ├─models                           
+│      └─schedules                        
+├─copy_paste_aug                          
+│  ├─configs                              
+│  └─__pycache__                          
+├─mmseg                                                                             
+│  ├─apis                                                    
+│  ├─core                                 
+│  │  ├─evaluation                                       
+│  │  ├─seg                               
+│  │  │  ├─sampler                                   
+│  │  ├─utils                                      
+│  ├─datasets                             
+│  │  ├─pipelines                                       
+│  ├─models                               
+│  │  ├─backbones                                          
+│  │  ├─decode_heads                                      
+│  │  ├─losses                                             
+│  │  ├─necks                                              
+│  │  ├─segmentors                                        
+│  │  ├─utils                                              
+│  ├─ops                                                    
+│  ├─utils                                                 
+├─submission                              
+└─utils          
+```
+
+## Data Structure
+
+```                        
+  input                                                                             
+   └─data                                                                                   
+      ├─test   
+      │ └─img                              
+      ├─train 
+      │ ├─img
+      │ └─ann                                                             
+      └─val
+        ├─img
+        └─ann                                
+```
 ## 1. MMSegmentation
 ### Installation
 
