@@ -163,7 +163,7 @@ cp_p : 적용 비율(float)
 # -- save file name
 start_num : 저장되는 image file의 몇 번부터 시작할 것인가(int)
 ```
-## CRF
+## 3. CRF
 
 ### Installation
 a. Create New Environment
@@ -191,7 +191,7 @@ Correct the 3rd line and RUN **utils/apply-crf.ipynb**
 ```
 df = pd.read_csv('yourpath.csv')
 ```
-## Pseudo-labeling
+## 4. Pseudo-labeling
 ### Make Img and Ann file
 ```
 # In 3th cell at utils/Pseudo-labeling.ipynb
@@ -217,6 +217,25 @@ ann = cv2.imread(f'ann/{current_idx}.png')
 ann2 = cv2.imread(f'ann2/{current_idx}.png')
 -> ann2 = path of another ann file for comparison
 ```
+
+## 🏆 Result
+
+### Public Score
+![public](./_img/public_score.png)
+
+### Private Score
+![private](./_img/private_score.png)
+
+### Evaluation & Ensemble
+|   <div align="center">Model </div>	|  <div align="center">Public mIoU </div> 	|<div align="center">Private mIoU </div>
+|---	|---	|---	|
+| <div align="center">Swin-L (UperNet) </div>	|  <div align="center">0.789 </div> 	|  <div align="center">0.742 </div> 	|
+| <div align="center">Swin-L (UperNet) </div>	|  <div align="center">0.785 </div> 	|  <div align="center">0.741 </div> 	|
+| <div align="center">Swin-L (UperNet) </div>	|  <div align="center">0.782 </div> 	|  <div align="center">0.742 </div> 	|
+| <div align="center">HRNetv2 W48 </div>	|  <div align="center">0.701 </div> 	|  <div align="center">0.639 </div> 	|
+| <div align="center">Ensemble </div>	|  <div align="center">0.794 </div> 	|  <div align="center">0.748 </div> 	|
+### Single Model Score History
+[Semantic Segmentation](./_img/Semantic_Segmentation.svg)
 
 ## Members
 
