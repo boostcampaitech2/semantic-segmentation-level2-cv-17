@@ -7,47 +7,6 @@ input/
 # work dir
 work_dirs/
 
-# config folders
-_base_/
-danet/
-emanet/
-hrnet/
-point_rend/
-swin/
-ann/
-deeplabv3/
-encnet/
-icnet/
-psanet/
-unet/
-apcnet/
-deeplabv3plus/
-fastfcn/
-isanet/
-pspnet/
-upernet/
-bisenetv1/
-fastscnn/
-mobilenet_v2/
-resnest/
-bisenetv2/
-dmnet/
-fcn/
-mobilenet_v3/
-segformer/
-vit/
-ccnet/
-dnlnet/
-fp16/
-nonlocal_net/
-sem_fpn/
-cgnet/
-dpt/
-gcnet/
-ocrnet/
-setr/
-
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
