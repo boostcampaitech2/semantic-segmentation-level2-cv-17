@@ -60,6 +60,7 @@ def save_txt(img_set):
     with open('SavedImgList.txt', 'w') as f:
         f.write(write_elements)
 
+# if you want to save file in read_data
 # for idx in read_data:
 #     # img = cv2.imread(f'img/{idx}.jpg')
 #     ann = cv2.imread(f'ann/{idx}.png')
