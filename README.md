@@ -221,10 +221,10 @@ ann2 = cv2.imread(f'ann2/{current_idx}.png')
 ## 🏆 Result
 
 ### Public Score
-![public](./_img/public_score.png)
+![public](./_img/public_score.PNG)
 
 ### Private Score
-![private](./_img/private_score.png)
+![private](./_img/private_score.PNG)
 
 ### Evaluation & Ensemble
 |   <div align="center">Model </div>	|  <div align="center">Public mIoU </div> 	|<div align="center">Private mIoU </div>
