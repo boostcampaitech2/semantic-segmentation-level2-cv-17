@@ -12,8 +12,8 @@
 여러분에 의해 만들어진 우수한 성능의 모델은 쓰레기장에 설치되어 정확한 분리수거를 돕거나, 어린아이들의 분리수거 교육 등에 사용될 수 있을 것입니다. 부디 지구를 위기로부터 구해주세요! 🌎
 
 ### Structure
-[Project Structure](##Project-Structure)  
-[Data Structure](##Data-Structure)  
+[Project Structure](#Project-Structure)  
+[Data Structure](#Data-Structure)  
 
 ### Usage
 &nbsp; [1. MMSegmentation](#MMSegmentation)  
@@ -21,7 +21,7 @@
 &nbsp; [3. CRF](#CRF)  
 &nbsp; [4. Pseudo-labeling](#Pseudo-labeling)  
 
-[🏆 Result](#Result)
+[🏆 Result](#🏆Result)
 
 
 ## Project-Structure
@@ -232,7 +232,7 @@ ann2 = cv2.imread(f'ann2/{current_idx}.png')
 -> ann2 = path of another ann file for comparison
 ```
 
-## 🏆 Result
+## 🏆Result
 
 ### Public Score
 ![public](./_img/public_score.PNG)
