@@ -11,7 +11,20 @@
 
 여러분에 의해 만들어진 우수한 성능의 모델은 쓰레기장에 설치되어 정확한 분리수거를 돕거나, 어린아이들의 분리수거 교육 등에 사용될 수 있을 것입니다. 부디 지구를 위기로부터 구해주세요! 🌎
 
-## Project Structure
+### Structure
+[Project Structure](##Project-Structure)  
+[Data Structure](##Data-Structure)  
+
+### Usage
+&nbsp; [1. MMSegmentation](#MMSegmentation)  
+&nbsp; [2. Copy Paste](#Copy-Paste)  
+&nbsp; [3. CRF](#CRF)  
+&nbsp; [4. Pseudo-labeling](#Pseudo-labeling)  
+
+[🏆 Result](#Result)
+
+
+## Project-Structure
 ```
 ├─input 
 ├─configs                                 
@@ -45,7 +58,7 @@
 └─utils          
 ```
 
-## Data Structure
+## Data-Structure
 
 ```                        
   input                                                                             
@@ -59,7 +72,8 @@
         ├─img
         └─ann                                
 ```
-## 1. MMSegmentation
+
+## MMSegmentation
 ### Installation
 
 a. Create Environment
@@ -138,7 +152,7 @@ ckpt_name : checkpoint name(str)
 csv_name : infernece한 결과의 csv file name(str)
 ```
 
-## 2. Copy Paste
+## Copy-Paste
 
 ### Running
 ```
@@ -163,7 +177,7 @@ cp_p : 적용 비율(float)
 # -- save file name
 start_num : 저장되는 image file의 몇 번부터 시작할 것인가(int)
 ```
-## 3. CRF
+## CRF
 
 ### Installation
 a. Create New Environment
@@ -191,7 +205,7 @@ Correct the 3rd line and RUN **utils/apply-crf.ipynb**
 ```
 df = pd.read_csv('yourpath.csv')
 ```
-## 4. Pseudo-labeling
+## Pseudo-labeling
 ### Make Img and Ann file
 ```
 # In 3th cell at utils/Pseudo-labeling.ipynb
