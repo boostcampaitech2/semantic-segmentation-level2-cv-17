@@ -21,7 +21,7 @@
 &nbsp; [3. CRF](#CRF)  
 &nbsp; [4. Pseudo-labeling](#Pseudo-labeling)  
 
-[🏆 Result](#🏆Result)
+[🏆 Result](#result)
 
 
 ## Project-Structure
