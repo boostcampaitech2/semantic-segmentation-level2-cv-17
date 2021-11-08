@@ -99,7 +99,7 @@ pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7
 ### Train
 
 ```
-python seg_train.py --config_train ./configs/train.yaml
+python mmseg_train.py --config_train ./configs/train.yaml
 ```
 
 ### Train yaml
@@ -135,7 +135,7 @@ save_best_model : 점수가 best인 model을 저장할지 여부(bool)
 ### Inference
 
 ```
-python seg_inference.py --config_train ./configs/inference.yaml
+python mmseg_inference.py --config_train ./configs/inference.yaml
 ```
 
 ### Inference yaml
